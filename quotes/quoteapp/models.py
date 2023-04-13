@@ -8,12 +8,12 @@ class Tag(models.Model):
         return f'{self.name}'
     
 class Quote(models.Model):
-    tags = models.ManyToManyField(Tag)
     author = models.ForeignKey('Author', on_delete=models.CASCADE,)
-    quote = models.CharField(max_length=2000, null=False, unique=True)
-
+    text = models.CharField(max_length=2000, null=False, unique=True)
+    tags = models.ManyToManyField(Tag)
+    
     def __str__(self):
-        return f'{self.quote}'
+        return f'{self.text}'
 
 class Author(models.Model):
     fullname = models.CharField(max_length=25, null=False, unique=True)
